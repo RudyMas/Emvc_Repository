@@ -1,0 +1,25 @@
+{
+  "name": "rudymas/emvc_repository",
+  "description": "PHP class Emvc_Repository for the EasyMVC Framework",
+  "version": "2.0.0",
+  "type": "library",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Rudy Mas",
+      "email": "rudy.mas@rmsoft.be",
+      "homepage": "http://www.rmsoft.be",
+      "role": "Developer"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">= 7.1",
+    "rudymas/pdo-ext": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "RudyMas\\Emvc_Repository\\": "src/"
+    }
+  }
+}
