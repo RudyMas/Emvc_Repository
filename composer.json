@@ -1,6 +1,6 @@
 {
-  "name": "rudymas/emvc_repository",
-  "description": "PHP class Emvc_Repository for the EasyMVC Framework",
+  "name": "easymvc/repository",
+  "description": "PHP Class Repository for the EasyMVC Framework",
   "version": "2.0.0",
   "type": "library",
   "license": "GPL-3.0",
@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "RudyMas\\Emvc_Repository\\": "src/"
+      "EasyMVC\\Repository\\": "src/"
     }
   }
 }

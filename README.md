@@ -1,16 +1,16 @@
-# PHP class Emvc_Repository for the EasyMVC Framework
+# PHP Class Repository for the EasyMVC Framework
 
-This is the Emvc_Repository class which is used by EasyMVC.
+This is the Class Repository which is used by EasyMVC.
 
 ## Installation
 Install the package using composer.
 ```
-composer require rudymas/emvc_repository
+composer require easymvc/repository
 ```
 
 or by editing composer.json yourself and adding:
 ```
 "require": {
-    "rudymas/emvc_repository": "*"
+    "easymvc/repository": "*"
 }
 ```

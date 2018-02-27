@@ -1,6 +1,6 @@
 <?php
 
-namespace RudyMas\Emvc_Repository;
+namespace EasyMVC\Repository;
 
 use Exception;
 use RudyMas\PDOExt\DBconnect;
@@ -14,7 +14,7 @@ use RudyMas\PDOExt\DBconnect;
  * @version     2.0.0
  * @package     Library
  */
-class Emvc_Repository
+class Repository
 {
     private $data = [];
     private $indexMarker = 0;
@@ -192,4 +192,4 @@ class Emvc_Repository
     }
 }
 
-/** End of File: Emvc_Repository.php **/
+/** End of File: Repository.php **/
