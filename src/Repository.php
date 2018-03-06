@@ -11,8 +11,8 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.0.0
- * @package     Library
+ * @version     2.0.1
+ * @package     EasyMVC\Repository
  */
 class Repository
 {
@@ -155,7 +155,7 @@ class Repository
      */
     public function loadAllFromTable(string $table, string $model): void
     {
-        $newModel = '\\Model\\' . $model;
+        $newModel = '\\Models\\' . $model;
         $query = "SELECT * FROM {$table}";
         $this->db->query($query);
         $this->db->fetchAll();
@@ -171,7 +171,7 @@ class Repository
      */
     public function loadAllFromTableByQuery(string $model, string $preparedStatement, array $keyBindings): void
     {
-        $newModel = '\\Model\\' . $model;
+        $newModel = '\\Models\\' . $model;
         $this->db->prepare($preparedStatement);
         foreach ($keyBindings as $key => $value) {
             if (is_integer($value)) {
