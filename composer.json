@@ -18,6 +18,9 @@
     "rudymas/pdo-ext": "*"
   },
   "autoload": {
+    "classmap": [
+      "src/"
+    ],
     "psr-4": {
       "EasyMVC\\Repository\\": "src/"
     }
