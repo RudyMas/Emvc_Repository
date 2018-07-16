@@ -11,7 +11,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.0.2
+ * @version     2.1.2
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -150,6 +150,14 @@ class Repository
     }
 
     /**
+     * Clearing Data
+     */
+    public function clearData(): void
+    {
+        $this->data = [];
+    }
+
+    /**
      * @param string $table
      * @param string $model
      */
@@ -172,22 +180,32 @@ class Repository
     public function loadAllFromTableByQuery(string $model, string $preparedStatement, array $keyBindings = []): void
     {
         $newModel = '\\Models\\' . $model;
-        $this->db->prepare($preparedStatement);
+        $statement = $this->db->prepare($preparedStatement);
         foreach ($keyBindings as $key => $value) {
-            if (is_integer($value)) {
-                $this->db->bindValue($key, $value, \PDO::PARAM_INT);
-            } elseif (is_bool($value)) {
-                $this->db->bindValue($key, $value, \PDO::PARAM_BOOL);
-            } elseif (is_null($value)) {
-                $this->db->bindValue($key, $value, \PDO::PARAM_NULL);
-            } elseif (is_string($value)) {
-                $this->db->bindValue($key, $value, \PDO::PARAM_STR);
-            }
+            $statement->bindValue($key, $value, $this->PDOparameter($value));
         }
-        $this->db->execute();
+        $statement->execute();
+        $this->db->setInternalData($statement->fetchAll(\PDO::FETCH_ASSOC));
         $this->db->fetchAll();
         foreach ($this->db->data as $data) {
             $this->data[] = $newModel::new($data);
+        }
+    }
+
+    /**
+     * @param $value
+     * @return int
+     */
+    public function PDOparameter($value): int
+    {
+        if (is_integer($value)) {
+            return \PDO::PARAM_INT;
+        } elseif (is_bool($value)) {
+            return \PDO::PARAM_BOOL;
+        } elseif (is_null($value)) {
+            return \PDO::PARAM_NULL;
+        } elseif (is_string($value)) {
+            return \PDO::PARAM_STR;
         }
     }
 }
