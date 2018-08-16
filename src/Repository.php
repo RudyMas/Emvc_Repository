@@ -3,6 +3,7 @@
 namespace EasyMVC\Repository;
 
 use Exception;
+use PDO;
 use RudyMas\PDOExt\DBconnect;
 
 /**
@@ -11,7 +12,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.1.2.31
+ * @version     2.1.3.32
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -22,10 +23,10 @@ class Repository
 
     /**
      * Repository constructor.
-     * @param DBconnect|null $db
-     * @param $object
+     * @param null|DBconnect $db
+     * @param null $object
      */
-    public function __construct(DBconnect $db = null, $object = null)
+    public function __construct(?DBconnect $db, $object = null)
     {
         if ($object !== null) {
             $this->data[] = $object;
@@ -185,9 +186,8 @@ class Repository
             $statement->bindValue($key, $value, $this->PDOparameter($value));
         }
         $statement->execute();
-        $this->db->setInternalData($statement->fetchAll(\PDO::FETCH_ASSOC));
-        $this->db->fetchAll();
-        foreach ($this->db->data as $data) {
+        $tableData = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($tableData as $data) {
             $this->data[] = $newModel::new($data);
         }
     }
@@ -199,15 +199,13 @@ class Repository
     public function PDOparameter($value): int
     {
         if (is_integer($value)) {
-            return \PDO::PARAM_INT;
+            return PDO::PARAM_INT;
         } elseif (is_bool($value)) {
-            return \PDO::PARAM_BOOL;
+            return PDO::PARAM_BOOL;
         } elseif (is_null($value)) {
-            return \PDO::PARAM_NULL;
+            return PDO::PARAM_NULL;
         } elseif (is_string($value)) {
-            return \PDO::PARAM_STR;
+            return PDO::PARAM_STR;
         }
     }
 }
-
-/** End of File: Repository.php **/
