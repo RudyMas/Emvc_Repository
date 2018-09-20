@@ -12,7 +12,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.1.3.32
+ * @version     2.2.1.34
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -72,7 +72,7 @@ class Repository
     public function getByIndex(int $id)
     {
         foreach ($this->data as $value) {
-            if ($value->getId() === $id) {
+            if ($value->getData('id') === $id) {
                 return $value;
             }
         }
@@ -80,6 +80,8 @@ class Repository
     }
 
     /**
+     * This function needs following function to be inside the Model Class
+     *
      * @param string $field
      * @param string $search
      * @return array
@@ -88,7 +90,7 @@ class Repository
     {
         $output = [];
         foreach ($this->data as $value) {
-            if ($value[$field] == $search) {
+            if ($value->getData($field) == $search) {
                 $output[] = $value;
             }
         }
