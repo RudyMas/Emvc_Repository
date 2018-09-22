@@ -12,7 +12,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.2.1.34
+ * @version     2.3.0.35
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -50,18 +50,6 @@ class Repository
     public function getAll(): array
     {
         return $this->data;
-    }
-
-    /**
-     * @deprecated
-     * @param int $id
-     * @return mixed
-     * @throws Exception
-     */
-    public function getAtIndex(int $id)
-    {
-        trigger_error('Use getByIndex instead.', E_USER_DEPRECATED);
-        return $this->getByIndex($id);
     }
 
     /**
@@ -161,10 +149,10 @@ class Repository
     }
 
     /**
-     * @param string $table
      * @param string $model
+     * @param string $table
      */
-    public function loadAllFromTable(string $table, string $model): void
+    public function loadAllFromTable(string $model, string $table): void
     {
         $newModel = '\\Models\\' . $model;
         $query = "SELECT * FROM {$table}";
