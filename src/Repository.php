@@ -68,8 +68,6 @@ class Repository
     }
 
     /**
-     * This function needs following function to be inside the Model Class
-     *
      * @param string $field
      * @param string $search
      * @return array
