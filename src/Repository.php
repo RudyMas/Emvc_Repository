@@ -12,7 +12,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.3.1.36
+ * @version     2.4.0.37
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -178,6 +178,19 @@ class Repository
         foreach ($tableData as $data) {
             $this->data[] = $newModel::new($data);
         }
+    }
+
+    /**
+     * @param string $preparedStatement
+     * @param array $keyBindings
+     */
+    public function executeQuery(string $preparedStatement, array $keyBindings = []): void
+    {
+        $statement = $this->db->prepare($preparedStatement);
+        foreach ($keyBindings as $key => $value) {
+            $statement->bindValue($key, $value, $this->PDOparameter($value));
+        }
+        $statement->execute();
     }
 
     /**
