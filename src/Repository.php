@@ -12,7 +12,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.4.1.38
+ * @version     2.5.0.39
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -174,6 +174,7 @@ class Repository
             $statement->bindValue($key, $value, $this->PDOparameter($value));
         }
         $statement->execute();
+        $this->db->rows = $statement->rowCount();
         $tableData = $statement->fetchAll(PDO::FETCH_ASSOC);
         foreach ($tableData as $data) {
             $this->data[] = $newModel::new($data);
@@ -191,7 +192,17 @@ class Repository
         foreach ($keyBindings as $key => $value) {
             $statement->bindValue($key, $value, $this->PDOparameter($value));
         }
-        return $statement->execute();
+        $status = $statement->execute();
+        $this->db->rows = $statement->rowCount();
+        return $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRows(): int
+    {
+        return $this->db->rows;
     }
 
     /**
