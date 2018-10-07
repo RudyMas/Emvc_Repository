@@ -12,7 +12,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.5.0.39
+ * @version     2.5.1.40
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -203,6 +203,17 @@ class Repository
     public function getRows(): int
     {
         return $this->db->rows;
+    }
+
+    /**
+     * @param string $sql
+     * @param array $keyBindings
+     * @return int
+     */
+    public function getRowsByQuery(string $sql, array $keyBindings): int
+    {
+        $this->executeQuery($sql, $keyBindings);
+        return $this->getRows();
     }
 
     /**
