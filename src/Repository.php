@@ -10,9 +10,9 @@ use RudyMas\PDOExt\DBconnect;
  * Class Repository
  *
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
- * @copyright   2017-2018, rmsoft.be. (http://www.rmsoft.be/)
+ * @copyright   2017-2019, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.6.0.40
+ * @version     2.6.1.41
  * @package     EasyMVC\Repository
  */
 class Repository
@@ -60,7 +60,7 @@ class Repository
     public function getByIndex(int $id)
     {
         foreach ($this->data as $value) {
-            if ($value->getData('id') === $id) {
+            if ($value->getData('id') == $id) {
                 return $value;
             }
         }
