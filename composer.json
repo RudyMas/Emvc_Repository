@@ -18,9 +18,6 @@
     "ext-pdo": "*"
   },
   "autoload": {
-    "classmap": [
-      "src/"
-    ],
     "psr-4": {
       "EasyMVC\\": "src/"
     }
