@@ -7,13 +7,13 @@ use PDO;
 use RudyMas\PDOExt\DBconnect;
 
 /**
- * Class Repository
+ * Class Repository (PHP version 7.2)
  *
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2020, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.6.1.43
- * @package     EasyMVC\Repository
+ * @version     2.6.2.0
+ * @package     EasyMVC
  */
 class Repository
 {
