@@ -4,7 +4,7 @@ namespace EasyMVC;
 
 use Exception;
 use PDO;
-use RudyMas\PDOExt\DBconnect;
+use RudyMas\DBconnect;
 
 /**
  * Class Repository (PHP version 7.2)
@@ -12,7 +12,7 @@ use RudyMas\PDOExt\DBconnect;
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
  * @copyright   2017-2020, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.6.2.0
+ * @version     2.6.2.1
  * @package     EasyMVC
  */
 class Repository
