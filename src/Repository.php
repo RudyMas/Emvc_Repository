@@ -7,12 +7,12 @@ use PDO;
 use RudyMas\DBconnect;
 
 /**
- * Class Repository (PHP version 7.2)
+ * Class Repository (PHP version 8.1)
  *
  * @author      Rudy Mas <rudy.mas@rmsoft.be>
- * @copyright   2017-2020, rmsoft.be. (http://www.rmsoft.be/)
+ * @copyright   2017-2022, rmsoft.be. (http://www.rmsoft.be/)
  * @license     https://opensource.org/licenses/GPL-3.0 GNU General Public License, version 3 (GPL-3.0)
- * @version     2.6.2.1
+ * @version     8.1.0.0
  * @package     EasyMVC
  */
 class Repository
@@ -154,7 +154,7 @@ class Repository
     {
         $newModel = '\\Models\\' . $model;
         $query = "SELECT * FROM {$table}";
-        $this->db->query($query);
+        $this->db->queryDB($query);
         $this->db->fetchAll();
         foreach ($this->db->data as $data) {
             $this->data[] = $newModel::new($data);
